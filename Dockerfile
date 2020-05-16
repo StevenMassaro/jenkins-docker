@@ -21,12 +21,6 @@ RUN \
   cd /tmp/ruby-build-* && ./install.sh && cd / && \
   ruby-build -v 2.5.1 /usr/local && rm -rfv /tmp/ruby-build-* && \
   gem install jekyll bundler --no-rdoc --no-ri
-  
-# Install ImageMagick
-RUN wget https://www.imagemagick.org/download/ImageMagick.tar.gz && \
-	tar xvzf ImageMagick.tar.gz && \
-	cd ImageMagick-* && \
-	./configure && \
-	make && \
-	sudo make install && \
-	sudo ldconfig /usr/local/lib
+  	
+# Install ImageMagick (for Jekyll picture resizing)
+RUN apt-get install imagemagick
