@@ -24,3 +24,6 @@ RUN \
   	
 # Install ImageMagick (for Jekyll picture resizing)
 RUN apt-get update && apt-get install --assume-yes imagemagick
+
+# Install rclone (for uploading artifacts to S3)
+RUN apt-get install rclone
