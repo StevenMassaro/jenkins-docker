@@ -12,6 +12,8 @@ RUN apt-get update  -qq \
     && apt-get install docker-ce=17.12.1~ce-0~debian -y
 RUN usermod -aG docker jenkins
 
+
+# Install Ruby and Jekyll
 RUN \
   apt-get update && apt-get install -y --no-install-recommends --no-install-suggests curl bzip2 build-essential libssl-dev libreadline-dev zlib1g-dev && \
   rm -rf /var/lib/apt/lists/* && \
@@ -19,3 +21,12 @@ RUN \
   cd /tmp/ruby-build-* && ./install.sh && cd / && \
   ruby-build -v 2.5.1 /usr/local && rm -rfv /tmp/ruby-build-* && \
   gem install jekyll bundler --no-rdoc --no-ri
+  
+# Install ImageMagick
+RUN wget https://www.imagemagick.org/download/ImageMagick.tar.gz && \
+	tar xvzf ImageMagick.tar.gz && \
+	cd ImageMagick-* && \
+	./configure && \
+	make && \
+	sudo make install && \
+	sudo ldconfig /usr/local/lib
