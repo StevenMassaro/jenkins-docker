@@ -23,4 +23,4 @@ RUN \
   gem install jekyll bundler --no-rdoc --no-ri
   	
 # Install ImageMagick (for Jekyll picture resizing)
-RUN apt-get install imagemagick
+RUN apt-get update && apt-get install --assume-yes imagemagick
