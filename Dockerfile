@@ -1,12 +1,18 @@
 from jenkins/jenkins:lts
  
 USER root
+# rclone - for copying files in blog job
+# libxml-xpath-perl - for parsing html in blog job
+# libvips-dev - for generating images in blog job
 RUN apt-get update -qq \
  && apt-get install apt-transport-https -yq \
  ca-certificates \
  curl \
  software-properties-common \
- sudo
+ sudo \
+ rclone \
+ libxml-xpath-perl \
+ libvips-dev
 
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - \
     && sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable" \
@@ -21,15 +27,3 @@ RUN \
   cd /tmp/ruby-build-* && ./install.sh && cd / && \
   ruby-build -v 2.5.1 /usr/local && rm -rfv /tmp/ruby-build-* && \
   gem install jekyll bundler --no-rdoc --no-ri
-  	
-# Install ImageMagick (for Jekyll picture resizing)
-RUN apt-get update && apt-get install --assume-yes imagemagick
-
-# Install rclone (for uploading artifacts to S3)
-RUN apt-get install rclone
-
-# Install xpath for blog build
-RUN apt-get install --assume-yes libxml-xpath-perl
-
-# Install libvips-dev for blog image generation
-RUN apt-get install --assume-yes libvips-dev
