@@ -30,3 +30,6 @@ RUN apt-get install rclone
 
 # Install xpath for blog build
 RUN apt-get install --assume-yes libxml-xpath-perl
+
+# Install libvips-dev for blog image generation
+RUN apt-get install --assume-yes libvips-dev
