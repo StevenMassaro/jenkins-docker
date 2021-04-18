@@ -26,4 +26,4 @@ RUN \
   curl -L https://github.com/rbenv/ruby-build/archive/refs/tags/v20210405.tar.gz | tar -zxvf - -C /tmp/ && \
   cd /tmp/ruby-build-* && ./install.sh && cd / && \
   ruby-build -v 2.7.3 /usr/local && rm -rfv /tmp/ruby-build-* && \
-  gem install jekyll bundler --no-rdoc --no-ri
+  gem install jekyll bundler --no-document
